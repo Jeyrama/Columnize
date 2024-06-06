@@ -23,3 +23,16 @@ for 2 columns,
 
 
 // Solution
+
+function columnize(items, n) {
+  let res = '';
+  let widths = Array(n).fill(0);
+  
+  for (let i = 0; i < items.length; i++)
+    widths[i % n] = Math.max(widths[i % n], items[i].length);
+  for (let i = 0; i < items.length; i++) {
+    res += !i ? '' : i % n ? " | " : "\n";
+    res += items[i].padEnd(widths[i % n], ' ');
+  }
+  return res;
+}
